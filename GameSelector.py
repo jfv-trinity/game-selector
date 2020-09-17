@@ -16,7 +16,7 @@ def adding_game():
         game = input()
         if game != "stop":
             application_gamelist.append(game)
-
+ 
 
 def deleting_game():
     game = ""
