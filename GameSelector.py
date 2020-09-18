@@ -7,11 +7,11 @@ def game_generator():
 def adding_game():
     game = ""
 
-    print("Type in game name then hit enter to add next game.\n""When you are done adding games type: stop")
+    print("\nType the game name you wish to add then hit enter to add game.\n""When you wish to stop type: stop")
     while game != "stop":
-        print("Number of games on list:")
-        print(len(application_gamelist))
-        print(application_gamelist)
+        print("Number of games on list: " + (str(len(application_gamelist))))
+        '''print(len(application_gamelist))'''
+        print(application_gamelist.sort())
         print("\nEnter game name here:")
         game = input()
         if game != "stop":
