@@ -5,17 +5,32 @@ def game_generator():
 
 
 def adding_game():
-    game = ""
 
-    print("\nType the game name you wish to add then hit enter to add game.\n""When you wish to stop type: stop")
+    failedentries = False
+    game = "Empty"
+
+    print("\nType the game name you wish to add then hit enter to add game.\n")
+    print("When you are done hit enter twice or type: stop\n")
+    print("Current number of games on list: " + (str(len(application_gamelist))))
+    application_gamelist.sort()
+    print(application_gamelist)
     while game != "stop":
-        print("Number of games on list: " + (str(len(application_gamelist))))
-        '''print(len(application_gamelist))'''
-        print(application_gamelist.sort())
-        print("\nEnter game name here:")
+        print("\nEnter game title: ", end='')
         game = input()
-        if game != "stop":
+        if game != "stop" and game != "":
+            failedentries = 0
             application_gamelist.append(game)
+            application_gamelist.sort()
+            print(application_gamelist)
+        if failedentries == 1:
+            return
+            print("returned")
+        if game == "":
+            failedentries = 1
+            print("press enter again to return to menu")
+
+
+
  
 
 def deleting_game():
@@ -60,8 +75,8 @@ def main_menu():
         "[4] See list \n"
         "[5] Clear list \n"
         "[6] Close program \n")
-        print("What would you like to select?")
-        ui_selection = input("1:").strip()
+        print("Type the number of the option you wish to select.")
+        ui_selection = input("option: ").strip()
         if ui_selection == "1":
             game_generator()
         elif ui_selection == "2":
