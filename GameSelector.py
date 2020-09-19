@@ -1,5 +1,5 @@
 
-
+#Methods used:
 def game_generator():
     print("fix me")
 
@@ -9,8 +9,8 @@ def adding_game():
     failedentries = False
     game = "Empty"
 
-    print("\nType the game name you wish to add then hit enter to add game.\n")
-    print("When you are done hit enter twice or type: stop\n")
+    print("\nType the game name you wish to add then hit enter to add game.")
+    print("When you are done hit enter twice or type: stop\n\n")
     print("Current number of games on list: " + (str(len(application_gamelist))))
     application_gamelist.sort()
     print(application_gamelist)
@@ -24,14 +24,11 @@ def adding_game():
             print(application_gamelist)
         if failedentries == 1:
             return
-            print("returned")
         if game == "":
             failedentries = 1
             print("press enter again to return to menu")
 
 
-
- 
 
 def deleting_game():
     game = ""
@@ -68,14 +65,14 @@ def main_menu():
 
     closing = True
     while closing:
-        print(""
+        print("\n \n"
         "[1] Get help picking a game \n"
         "[2] Add a game \n"
         "[3] Delete a game \n"
         "[4] See list \n"
         "[5] Clear list \n"
         "[6] Close program \n")
-        print("Type the number of the option you wish to select.")
+        print("\nType the number of the option you wish to select.")
         ui_selection = input("option: ").strip()
         if ui_selection == "1":
             game_generator()
@@ -96,7 +93,7 @@ def main_menu():
     find_gamelist.write(temp)
     find_gamelist.close()
 
-
+#Variables used:
 application_gamelist = []
 
 
