@@ -1,7 +1,13 @@
 
 #Methods used:
+def printgamelist():
+    application_gamelist.sort()
+    print(application_gamelist)
+
+
 def game_generator():
-    print("fix me")
+    userpicking = True
+    len(application_gamelist)
 
 
 def adding_game():
@@ -9,13 +15,15 @@ def adding_game():
     failedentries = False
     game = "Empty"
 
-    print("\nType the game name you wish to add then hit enter to add game.")
-    print("When you are done hit enter twice or type: stop\n\n")
+    print("\n------------------------------------------------------------")
+    print("Type the game name you wish to add then hit enter to add game.")
+    print("When you are done hit enter twice or type: stop")
+    print("\n")
     print("Current number of games on list: " + (str(len(application_gamelist))))
     application_gamelist.sort()
     print(application_gamelist)
     while game != "stop":
-        print("\nEnter game title: ", end='')
+        print("\n\nEnter game title: ", end='')
         game = input()
         if game != "stop" and game != "":
             failedentries = 0
@@ -29,29 +37,47 @@ def adding_game():
             print("press enter again to return to menu")
 
 
-
 def deleting_game():
-    game = ""
+    failedentries = False
+    game = "Empty"
 
-    while game is not "stop":
-        print(len(application_gamelist))
-        print(application_gamelist)
-        print("\nEnter game name here:")
+    print("\n------------------------------------------------------------")
+    print("Type the game you wish to remove. When done type stop or press enter twice.")
+    print("Current number of games on list: " + (str(len(application_gamelist))))
+    print("\n")
+    application_gamelist.sort()
+    print(application_gamelist)
+    while game != "stop":
+        print("\nEnter game title: ", end='')
         game = input()
-        if game == "stop":
-            return
-        elif application_gamelist.count(game):
+        if game != "stop" and game != "":
+            failedentries = 0
             application_gamelist.remove(game)
-        else:
-            print("Not on list but we took it off anyway! :D")
+            application_gamelist.sort()
+            print(application_gamelist)
+        if failedentries == 1:
+            return
+        if game == "":
+            failedentries = 1
+            print("press enter again to return to menu")
 
 
 def view_list():
+    userviewing = True
+    print("\n------------------------------------------------------------")
+    print("Current number of games on list: " + (str(len(application_gamelist))))
     print(application_gamelist)
+    while userviewing is True:
+        print("\nHit enter when done viewing to return to menu")
+        userchoice = input()
+        if userchoice == "":
+            userviewing = False
 
 
 def clear_list():
     application_gamelist.clear()
+    print("------------------------------------------------------------\n")
+    print("List Cleared\n")
 
 
 #Add Description feature when hovering over lines 12-17 in UI, this feature allows more detailed descriptions.
@@ -65,7 +91,7 @@ def main_menu():
 
     closing = True
     while closing:
-        print("\n \n"
+        print("------------------------------------------------------------\n \n"
         "[1] Get help picking a game \n"
         "[2] Add a game \n"
         "[3] Delete a game \n"
@@ -73,7 +99,7 @@ def main_menu():
         "[5] Clear list \n"
         "[6] Close program \n")
         print("\nType the number of the option you wish to select.")
-        ui_selection = input("option: ").strip()
+        ui_selection = input("Selecting option: ").strip()
         if ui_selection == "1":
             game_generator()
         elif ui_selection == "2":
