@@ -33,7 +33,6 @@ def game_generator():
             exit()
 
 
-
 def adding_game():
 
     failedentries = 0
@@ -62,8 +61,8 @@ def adding_game():
 
 
 def deleting_game():
-    failedentries = False
-    game_removel = "Empty_Shell"
+    user_wants_to_go_back_to_main_menu = False
+    game_removal = 'Empty Shell'
 
     print("\n------------------------------------------------------------")
     print("Type the game you wish to remove. When done type stop or press enter twice.")
@@ -71,40 +70,22 @@ def deleting_game():
     print("\n")
     application_gamelist.sort()
     print(application_gamelist)
-    while game_removel != "stop":
+    while game_removal is not "return":
         # make into a switch case later.
+        print("\nEnter game title: ", end='')
+        game_removal = input()
+        if game_removal == 'return' or user_wants_to_go_back_to_main_menu is True:
+            break
+        if game_removal == '':
+            print('press enter again to return to main menu')
+            user_wants_to_go_back_to_main_menu = True
         for game in application_gamelist:
-            print("\nEnter game title: ", end='')
-            game_removel = input()
-            if game_removel == game:
-                failedentries = 0
-                application_gamelist.remove(game_removel)
-                application_gamelist.sort()
+            if game_removal == game:
+                application_gamelist.remove(game_removal)
+                print("game has been removed")
+                print("\nUpdated List: ")
                 print(application_gamelist)
-            if failedentries == 1:
-                print("I activated without using command before :D")
-                return
-            if game_removel is "stop":
-                print("stop is working")
-                return
-            if game_removel is not game:
-                print("The title you have entered is not on the list.")
-            elif game_removel == "":
-                failedentries = 1
-                print("press enter again to return to menu")
-
-        '''if game != "stop" and game != "" and game is not application_gamelist:
-            failedentries = 0
-            application_gamelist.remove(game_removel)
-            application_gamelist.sort()
-            print(application_gamelist)
-        if game != application_gamelist and game is not "":
-            print(game, "This title is not on your current list.")
-        if failedentries == 1:
-            return
-        if game == "":
-            failedentries = 1
-            print("press enter again to return to menu")'''
+                break
 
 
 def view_list():
@@ -127,12 +108,12 @@ def clear_list():
 
 #Add Description feature when hovering over lines 12-17 in UI, this feature allows more detailed descriptions.
 def main_menu():
-    find_gamelist = open("Game_List.txt", "r")
-    for line in find_gamelist.readlines():
+    local_gamelist = open("Game_List.txt", "r")
+    for line in local_gamelist.readlines():
         line = line.strip()
         if line:
             application_gamelist.append(line)
-    find_gamelist.close()
+    local_gamelist.close()
 
     closing = True
     while closing:
@@ -157,14 +138,14 @@ def main_menu():
             clear_list()
         elif ui_selection == "6":
             closing = False
-    find_gamelist = open("Game_List.txt", "w")
+    local_gamelist = open("Game_List.txt", "w")
     temp = str('')
     for game in application_gamelist:
         temp = (temp + game + "\n")
-    find_gamelist.write(temp)
-    find_gamelist.close()
+    local_gamelist.write(temp)
+    local_gamelist.close()
 
-#Variables used:
+#Global Variables used:
 application_gamelist = []
 
 
